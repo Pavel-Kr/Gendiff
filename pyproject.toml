@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "hexlet-code"
+version = "0.1.0"
+description = "Difference generator for configuration files"
+authors = ["Pavel Krivosheev <pkrivosheev@bk.ru>"]
+readme = "README.md"
+packages = [
+    { include = "gendiff" },
+]
+
+[tool.poetry.scripts]
+gendiff = "gendiff.scripts.gendiff:main"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+argparse = "^1.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
