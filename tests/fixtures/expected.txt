@@ -1,0 +1,7 @@
+{
+	- only_1_key: some_value
+	+ only_2_key: other_value
+	  same_key_1: same_value
+	- same_key_2: value_1
+	+ same_key_2: value_2
+}
