@@ -2,6 +2,7 @@
 [![Actions Status](https://github.com/Pavel-Kr/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Pavel-Kr/python-project-50/actions)
 [![Main workflow](https://github.com/Pavel-Kr/python-project-50/actions/workflows/main.yml/badge.svg)](https://github.com/Pavel-Kr/python-project-50/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e2db2dbcff365ffdd2ab/maintainability)](https://codeclimate.com/github/Pavel-Kr/python-project-50/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/e2db2dbcff365ffdd2ab/test_coverage)](https://codeclimate.com/github/Pavel-Kr/python-project-50/test_coverage)
 
 ## Gendiff
 Difference generator for configuration files. Currently supports only JSON format.
