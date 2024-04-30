@@ -16,9 +16,11 @@ lint:
 test:
 	poetry run pytest
 
-
 test-coverage:
 	poetry run pytest --cov=gendiff/lib
+
+coverage-report:
+	poetry run pytest --cov=gendiff/lib --cov-report xml
 
 clean:
 	python3 -m pip uninstall hexlet-code
