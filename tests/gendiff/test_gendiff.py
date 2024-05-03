@@ -62,6 +62,14 @@ def expected_diff_nested():
     return expected
 
 
+@pytest.fixture
+def expected_diff_format_plain():
+    path = os.path.join(TEST_FILES_DIR, 'expected_format_plain.txt')
+    with open(path) as file:
+        expected = file.read()
+    return expected
+
+
 def test_generate_diff_plain_json(json_path_plain_1, json_path_plain_2, expected_diff_plain):
     diff = generate_diff(json_path_plain_1, json_path_plain_2)
     assert diff == expected_diff_plain
@@ -80,3 +88,13 @@ def test_generate_diff_nested_json(json_path_nested_1, json_path_nested_2, expec
 def test_generate_diff_nested_yaml(yaml_path_nested_1, yaml_path_nested_2, expected_diff_nested):
     diff = generate_diff(yaml_path_nested_1, yaml_path_nested_2)
     assert diff == expected_diff_nested
+
+
+def test_generate_diff_format_plain_json(json_path_nested_1, json_path_nested_2, expected_diff_format_plain):
+    diff = generate_diff(json_path_nested_1, json_path_nested_2, format_name='plain')
+    assert diff == expected_diff_format_plain
+
+
+def test_generate_diff_format_plain_yaml(yaml_path_nested_1, yaml_path_nested_2, expected_diff_format_plain):
+    diff = generate_diff(yaml_path_nested_1, yaml_path_nested_2, format_name='plain')
+    assert diff == expected_diff_format_plain

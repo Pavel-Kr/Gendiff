@@ -26,7 +26,7 @@ def _decorate_value(value, depth):
     return '\n'.join(strings)
 
 
-def stylish(tree: dict) -> str:
+def to_stylish(tree: dict) -> str:
     offset_to_left = 2
 
     def walk(diff: dict, depth):

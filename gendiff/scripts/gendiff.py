@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import argparse
 from gendiff import generate_diff
-from gendiff.lib.stylish import stylish
 
 
 def main():
@@ -15,9 +14,7 @@ def main():
                         help='set format for output',
                         default='stylish')
     args = parser.parse_args()
-    if args.format == 'stylish':
-        formatter = stylish
-    diff = generate_diff(args.first_file, args.second_file, formatter)
+    diff = generate_diff(args.first_file, args.second_file, args.format)
     print(diff)
 
 
