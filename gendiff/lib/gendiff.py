@@ -1,10 +1,9 @@
-from collections import defaultdict
 from gendiff.lib.config_parser import parse_file
 from gendiff.lib.formatters import stylish
 
 
 def build_diff(config_1: dict, config_2: dict) -> dict:
-    diff = defaultdict()
+    diff = {}
     key_set_1 = set(config_1)
     key_set_2 = set(config_2)
     for key in key_set_1 - key_set_2:
