@@ -1,6 +1,6 @@
 from gendiff.lib.config_parser import parse_file
-from gendiff.lib.stylish import to_stylish
-from gendiff.lib.plain import to_plain
+from gendiff.lib.formatters.stylish import to_stylish
+from gendiff.lib.formatters.plain import to_plain
 
 
 formatter_map = {
