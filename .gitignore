@@ -5,3 +5,4 @@ test_files/
 .vscode/
 .coverage
 coverage.xml
+*.cast
