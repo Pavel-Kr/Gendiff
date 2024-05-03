@@ -1,5 +1,5 @@
 from gendiff.lib.config_parser import parse_file
-from gendiff.lib.formatters import stylish
+from gendiff.lib.stylish import stylish
 
 
 def build_diff(config_1: dict, config_2: dict) -> dict:

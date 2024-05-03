@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 from gendiff import generate_diff
-from gendiff.lib.formatters import stylish
+from gendiff.lib.stylish import stylish
 
 
 def main():
