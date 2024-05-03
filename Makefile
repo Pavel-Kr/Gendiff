@@ -8,7 +8,7 @@ package-install:
 	python3 -m pip install --user dist/*.whl
 
 run-gendiff:
-	poetry run gendiff test_files/file1.json test_files/file2.json
+	poetry run gendiff tests/fixtures/file1_nested.json tests/fixtures/file2_nested.json
 
 lint:
 	poetry run flake8 gendiff
