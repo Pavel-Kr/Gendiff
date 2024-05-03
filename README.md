@@ -14,3 +14,5 @@ Gendiff requires poetry for installation. Detailed guide on how to install poetr
 [Gendiff JSON](https://asciinema.org/a/Ldp4ORCzxOpwiQ0TOeDvXcaKu)
 
 [Gendiff YAML](https://asciinema.org/a/nIrGOfY5dhNMI0MOqtTVejiaX)
+
+[Gendiff nested structures](https://asciinema.org/a/jIVsXEkvcNdb0ycVZWVsmYmdA)
