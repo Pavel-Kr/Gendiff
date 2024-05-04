@@ -1,11 +1,13 @@
 from gendiff.lib.config_parser import parse_file
 from gendiff.lib.formatters.stylish import to_stylish
 from gendiff.lib.formatters.plain import to_plain
+from gendiff.lib.formatters.json import to_json
 
 
 formatter_map = {
     'stylish': to_stylish,
-    'plain': to_plain
+    'plain': to_plain,
+    'json': to_json
 }
 
 

@@ -5,7 +5,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/e2db2dbcff365ffdd2ab/test_coverage)](https://codeclimate.com/github/Pavel-Kr/python-project-50/test_coverage)
 
 ## Gendiff
-Difference generator for configuration files. Supports JSON and YAML input file formats. Output can be shown in stylish or plain format, use `-f` flag to specify output format.
+Difference generator for configuration files. Supports JSON and YAML input file formats. Output can be shown in stylish, plain or JSON format, use `-f` flag to specify output format.
 
 ### Installation
 Gendiff requires poetry for installation. Detailed guide on how to install poetry can be found [here](https://python-poetry.org/docs/#installation). After you install poetry, run `make install build package-install`
@@ -18,3 +18,5 @@ Gendiff requires poetry for installation. Detailed guide on how to install poetr
 [Gendiff nested structures](https://asciinema.org/a/jIVsXEkvcNdb0ycVZWVsmYmdA)
 
 [Plain output format](https://asciinema.org/a/gpDv4QLvjGnf5QWmfFCfsm7Us)
+
+[JSON output format](https://asciinema.org/a/39yFEKJVQMbipWeITUFe2HVX3)
