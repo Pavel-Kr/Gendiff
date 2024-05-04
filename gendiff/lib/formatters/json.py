@@ -1,8 +1,8 @@
 import json
 
 
-indent_level = 4
+INDENT_LEVEL = 4
 
 
 def to_json(tree):
-    return json.dumps(tree, indent=indent_level, sort_keys=True)
+    return json.dumps(tree, indent=INDENT_LEVEL, sort_keys=True)

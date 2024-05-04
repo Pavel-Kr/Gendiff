@@ -4,7 +4,7 @@ from gendiff.lib.formatters.plain import to_plain
 from gendiff.lib.formatters.json import to_json
 
 
-formatter_map = {
+FORMATTER_MAP = {
     'stylish': to_stylish,
     'plain': to_plain,
     'json': to_json
@@ -33,7 +33,7 @@ def build_diff(config_1: dict, config_2: dict) -> dict:
 
 
 def generate_diff(file_path_1: str, file_path_2: str, format_name='stylish'):
-    formatter = formatter_map.get(format_name)
+    formatter = FORMATTER_MAP.get(format_name)
     if not formatter:
         formatter = to_stylish
     config_1 = parse_file(file_path_1)
