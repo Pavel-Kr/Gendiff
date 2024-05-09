@@ -20,7 +20,7 @@ Gendiff requires poetry for installation. Detailed guide on how to install poetr
       -h, --help            show help message and exit
       -f FORMAT, --format FORMAT
                             set format for output
-Format parameter can accept one of 3 values: `stylish`, `plain` or `json`
+Format parameter can accept one of 3 values: `stylish`, `plain` or `json`. If no format specified, then `stylish` is used as the default format.
 
 ### Demo
 [Gendiff JSON](https://asciinema.org/a/Ldp4ORCzxOpwiQ0TOeDvXcaKu)
