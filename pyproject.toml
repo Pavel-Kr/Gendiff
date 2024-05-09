@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "Difference generator for configuration files"
 authors = ["Pavel Krivosheev <pkrivosheev@bk.ru>"]
 readme = "README.md"
+repository = "https://github.com/Pavel-Kr/python-project-50"
 packages = [
     { include = "gendiff" },
 ]
@@ -13,7 +14,6 @@ gendiff = "gendiff.scripts.gendiff:main"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-argparse = "^1.4.0"
 pyyaml = "^6.0.1"
 
 

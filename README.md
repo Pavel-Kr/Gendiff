@@ -10,6 +10,18 @@ Difference generator for configuration files. Supports JSON and YAML input file 
 ### Installation
 Gendiff requires poetry for installation. Detailed guide on how to install poetry can be found [here](https://python-poetry.org/docs/#installation). After you install poetry, run `make install build package-install`
 
+### Usage
+    gendiff [-h] [-f FORMAT] first_file second_file
+
+      first_file - path to the first file
+      second_file - path to the second file
+
+    options:
+      -h, --help            show help message and exit
+      -f FORMAT, --format FORMAT
+                            set format for output
+Format parameter can accept one of 3 values: `stylish`, `plain` or `json`
+
 ### Demo
 [Gendiff JSON](https://asciinema.org/a/Ldp4ORCzxOpwiQ0TOeDvXcaKu)
 

@@ -5,76 +5,47 @@ from gendiff import generate_diff
 
 TEST_FILES_DIR = os.path.join('tests', 'fixtures')
 
+JSON_1_PATH = 'file1.json'
+JSON_2_PATH = 'file2.json'
+YAML_1_PATH = 'file1.yaml'
+YAML_2_PATH = 'file2.yaml'
 
-@pytest.fixture
-def json_path_nested_1():
-    return os.path.join(TEST_FILES_DIR, 'file1.json')
-
-
-@pytest.fixture
-def json_path_nested_2():
-    return os.path.join(TEST_FILES_DIR, 'file2.json')
-
-
-@pytest.fixture
-def yaml_path_nested_1():
-    return os.path.join(TEST_FILES_DIR, 'file1.yaml')
+EXPECTED_STYLISH_PATH = 'expected_stylish.txt'
+EXPECTED_PLAIN_PATH = 'expected_plain.txt'
+EXPECTED_JSON_PATH = 'expected.json'
 
 
-@pytest.fixture
-def yaml_path_nested_2():
-    return os.path.join(TEST_FILES_DIR, 'file2.yaml')
+@pytest.fixture(scope='function')
+def file_path_1(request):
+    return os.path.join(TEST_FILES_DIR, request.param)
 
 
-@pytest.fixture
-def expected_diff_stylish():
-    path = os.path.join(TEST_FILES_DIR, 'expected_stylish.txt')
+@pytest.fixture(scope='function')
+def file_path_2(request):
+    return os.path.join(TEST_FILES_DIR, request.param)
+
+
+@pytest.fixture(scope='function')
+def expected_diff(request):
+    path = os.path.join(TEST_FILES_DIR, request.param)
     with open(path) as file:
         expected = file.read()
     return expected
 
 
-@pytest.fixture
-def expected_diff_plain():
-    path = os.path.join(TEST_FILES_DIR, 'expected_plain.txt')
-    with open(path) as file:
-        expected = file.read()
-    return expected
+test_params = [
+    (JSON_1_PATH, JSON_2_PATH, 'stylish', EXPECTED_STYLISH_PATH),
+    (YAML_1_PATH, YAML_2_PATH, 'stylish', EXPECTED_STYLISH_PATH),
+    (JSON_1_PATH, JSON_2_PATH, 'plain', EXPECTED_PLAIN_PATH),
+    (YAML_1_PATH, YAML_2_PATH, 'plain', EXPECTED_PLAIN_PATH),
+    (JSON_1_PATH, JSON_2_PATH, 'json', EXPECTED_JSON_PATH),
+    (YAML_1_PATH, YAML_2_PATH, 'json', EXPECTED_JSON_PATH),
+]
 
 
-@pytest.fixture
-def expected_diff_json():
-    path = os.path.join(TEST_FILES_DIR, 'expected.json')
-    with open(path) as file:
-        expected = file.read()
-    return expected
-
-
-def test_generate_diff_stylish_json(json_path_nested_1, json_path_nested_2, expected_diff_stylish):
-    diff = generate_diff(json_path_nested_1, json_path_nested_2)
-    assert diff == expected_diff_stylish
-
-
-def test_generate_diff_stylish_yaml(yaml_path_nested_1, yaml_path_nested_2, expected_diff_stylish):
-    diff = generate_diff(yaml_path_nested_1, yaml_path_nested_2)
-    assert diff == expected_diff_stylish
-
-
-def test_generate_diff_format_plain_json(json_path_nested_1, json_path_nested_2, expected_diff_plain):
-    diff = generate_diff(json_path_nested_1, json_path_nested_2, format_name='plain')
-    assert diff == expected_diff_plain
-
-
-def test_generate_diff_format_plain_yaml(yaml_path_nested_1, yaml_path_nested_2, expected_diff_plain):
-    diff = generate_diff(yaml_path_nested_1, yaml_path_nested_2, format_name='plain')
-    assert diff == expected_diff_plain
-
-
-def test_generate_diff_format_json_json(json_path_nested_1, json_path_nested_2, expected_diff_json):
-    diff = generate_diff(json_path_nested_1, json_path_nested_2, format_name='json')
-    assert diff == expected_diff_json
-
-
-def test_generate_diff_format_json_yaml(yaml_path_nested_1, yaml_path_nested_2, expected_diff_json):
-    diff = generate_diff(yaml_path_nested_1, yaml_path_nested_2, format_name='json')
-    assert diff == expected_diff_json
+@pytest.mark.parametrize('file_path_1,file_path_2,format_name,expected_diff',
+                         test_params,
+                         indirect=['file_path_1', 'file_path_2', 'expected_diff'])
+def test_generate_diff(file_path_1, file_path_2, format_name, expected_diff):
+    diff = generate_diff(file_path_1, file_path_2, format_name=format_name)
+    assert diff == expected_diff

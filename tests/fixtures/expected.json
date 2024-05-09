@@ -1,6 +1,7 @@
 {
     "common": {
-        "children": {
+        "action": "nested",
+        "value": {
             "follow": {
                 "action": "add",
                 "value": false
@@ -29,9 +30,11 @@
                 }
             },
             "setting6": {
-                "children": {
+                "action": "nested",
+                "value": {
                     "doge": {
-                        "children": {
+                        "action": "nested",
+                        "value": {
                             "wow": {
                                 "action": "changed",
                                 "new_value": "so much",
@@ -52,7 +55,8 @@
         }
     },
     "group1": {
-        "children": {
+        "action": "nested",
+        "value": {
             "baz": {
                 "action": "changed",
                 "new_value": "bars",
