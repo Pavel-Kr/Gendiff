@@ -32,10 +32,10 @@ def build_diff(config_1: dict, config_2: dict) -> dict:
     return diff
 
 
-def generate_diff(file_path_1: str, file_path_2: str, format_name: str):
+def generate_diff(file_path_1: str, file_path_2: str, format_name='stylish'):
     formatter = FORMATTER_MAP.get(format_name)
     if not formatter:
-        return ''
+        formatter = convert_to_stylish
     config_1 = parse_file(file_path_1)
     config_2 = parse_file(file_path_2)
     diff = build_diff(config_1, config_2)
