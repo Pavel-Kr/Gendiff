@@ -59,3 +59,12 @@ def test_generate_diff(file_path_1, file_path_2, format_name, expected_diff):
 def test_generate_diff_empty_format(file_path_1, file_path_2, expected_diff):
     diff = generate_diff(file_path_1, file_path_2)
     assert diff == expected_diff
+
+
+@pytest.mark.parametrize('file_path_1,file_path_2',
+                         [
+                             (JSON_1_PATH, JSON_2_PATH)
+                         ], indirect=True)
+def test_generate_diff_wrong_format(file_path_1, file_path_2):
+    diff = generate_diff(file_path_1, file_path_2, format_name='dontexist')
+    assert diff == ''
