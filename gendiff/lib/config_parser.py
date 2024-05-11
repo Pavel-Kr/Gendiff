@@ -1,6 +1,5 @@
 import json
 import yaml
-from os.path import splitext
 
 
 def read_file(file_path: str) -> str:
@@ -9,9 +8,7 @@ def read_file(file_path: str) -> str:
         return text
 
 
-def parse_file(file_path: str) -> str:
-    text = read_file(file_path)
-    _, ext = splitext(file_path)
+def parse_content(text: str, ext: str) -> str:
     if ext == '.yaml' or ext == '.yml':
         res = yaml.load(text, Loader=yaml.CLoader)
     elif ext == '.json':

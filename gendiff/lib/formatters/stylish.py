@@ -5,6 +5,7 @@ ACTION_TO_SIGN = {
 }
 
 SPACES_PER_INDENT = 4
+OFFSET_TO_LEFT = 2
 
 
 def _decorate_value(value, depth):
@@ -26,34 +27,33 @@ def _decorate_value(value, depth):
     return '\n'.join(strings)
 
 
+def _walk(diff: dict, depth):
+    current_indent = depth * SPACES_PER_INDENT
+    deeper_indent = (depth + 1) * SPACES_PER_INDENT
+    diff_list = ['{']
+    for key in sorted(diff.keys()):
+        val = diff[key]
+        action = val['action']
+        spaces = ' ' * (deeper_indent - OFFSET_TO_LEFT)
+        if action == 'changed':
+            old_value = _decorate_value(val['old_value'], depth + 1)
+            new_value = _decorate_value(val['new_value'], depth + 1)
+            diff_list.append(f'{spaces}- {key}: {old_value}')
+            diff_list.append(f'{spaces}+ {key}: {new_value}')
+        elif action == 'nested':
+            children = val['value']
+            spaces = ' ' * deeper_indent
+            value = _walk(children, depth + 1)
+            diff_list.append(f'{spaces}{key}: {value}')
+        else:
+            sign = ACTION_TO_SIGN[action]
+            value = _decorate_value(val['value'], depth + 1)
+            diff_list.append(f'{spaces}{sign} {key}: {value}')
+
+    diff_list.append((' ' * current_indent) + '}')
+    result = '\n'.join(diff_list)
+    return result
+
+
 def convert_to_stylish(tree: dict) -> str:
-    offset_to_left = 2
-
-    def walk(diff: dict, depth):
-        current_indent = depth * SPACES_PER_INDENT
-        deeper_indent = (depth + 1) * SPACES_PER_INDENT
-        diff_list = ['{']
-        for key in sorted(diff.keys()):
-            val = diff[key]
-            action = val['action']
-            spaces = ' ' * (deeper_indent - offset_to_left)
-            if action == 'changed':
-                old_value = _decorate_value(val['old_value'], depth + 1)
-                new_value = _decorate_value(val['new_value'], depth + 1)
-                diff_list.append(f'{spaces}- {key}: {old_value}')
-                diff_list.append(f'{spaces}+ {key}: {new_value}')
-            elif action == 'nested':
-                children = val['value']
-                spaces = ' ' * deeper_indent
-                value = walk(children, depth + 1)
-                diff_list.append(f'{spaces}{key}: {value}')
-            else:
-                sign = ACTION_TO_SIGN[action]
-                value = _decorate_value(val['value'], depth + 1)
-                diff_list.append(f'{spaces}{sign} {key}: {value}')
-
-        diff_list.append((' ' * current_indent) + '}')
-        result = '\n'.join(diff_list)
-        return result
-
-    return walk(tree, 0)
+    return _walk(tree, 0)

@@ -40,6 +40,7 @@ test_params = [
     (YAML_1_PATH, YAML_2_PATH, 'plain', EXPECTED_PLAIN_PATH),
     (JSON_1_PATH, JSON_2_PATH, 'json', EXPECTED_JSON_PATH),
     (YAML_1_PATH, YAML_2_PATH, 'json', EXPECTED_JSON_PATH),
+    (JSON_1_PATH, JSON_2_PATH, 'dontexist', 'empty.txt'),
 ]
 
 
@@ -49,22 +50,3 @@ test_params = [
 def test_generate_diff(file_path_1, file_path_2, format_name, expected_diff):
     diff = generate_diff(file_path_1, file_path_2, format_name=format_name)
     assert diff == expected_diff
-
-
-@pytest.mark.parametrize('file_path_1,file_path_2,expected_diff',
-                         [
-                             (JSON_1_PATH, JSON_2_PATH, EXPECTED_STYLISH_PATH),
-                             (YAML_1_PATH, YAML_2_PATH, EXPECTED_STYLISH_PATH),
-                         ], indirect=True)
-def test_generate_diff_empty_format(file_path_1, file_path_2, expected_diff):
-    diff = generate_diff(file_path_1, file_path_2)
-    assert diff == expected_diff
-
-
-@pytest.mark.parametrize('file_path_1,file_path_2',
-                         [
-                             (JSON_1_PATH, JSON_2_PATH)
-                         ], indirect=True)
-def test_generate_diff_wrong_format(file_path_1, file_path_2):
-    diff = generate_diff(file_path_1, file_path_2, format_name='dontexist')
-    assert diff == ''

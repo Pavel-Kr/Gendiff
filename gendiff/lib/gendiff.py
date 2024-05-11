@@ -1,4 +1,6 @@
-from gendiff.lib.config_parser import parse_file
+from os.path import splitext
+
+from gendiff.lib.config_parser import parse_content, read_file
 from gendiff.lib.formatters.stylish import convert_to_stylish
 from gendiff.lib.formatters.plain import convert_to_plain
 from gendiff.lib.formatters.json import convert_to_json
@@ -32,14 +34,19 @@ def build_diff(config_1: dict, config_2: dict) -> dict:
     return diff
 
 
-def generate_diff(file_path_1: str, file_path_2: str, format_name=''):
-    if format_name == '':
-        format_name = 'stylish'
+def parse_config_from_file(file_path: str):
+    text = read_file(file_path)
+    _, ext = splitext(file_path)
+    config = parse_content(text, ext)
+    return config
+
+
+def generate_diff(file_path_1: str, file_path_2: str, format_name='stylish'):
     formatter = FORMATTER_MAP.get(format_name)
     if not formatter:
         return ''
-    config_1 = parse_file(file_path_1)
-    config_2 = parse_file(file_path_2)
+    config_1 = parse_config_from_file(file_path_1)
+    config_2 = parse_config_from_file(file_path_2)
     diff = build_diff(config_1, config_2)
     result = formatter(diff)
     return result
